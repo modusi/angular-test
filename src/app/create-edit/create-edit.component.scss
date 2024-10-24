@@ -1,0 +1,14 @@
+form{
+    border:5px solid black;
+}
+
+div.actions{
+    margin-top: 20px;
+    display: flex;
+    gap:30px;
+}
+
+div.error{
+    font-size: 10px;
+    color:red;
+}

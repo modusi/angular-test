@@ -1,0 +1,45 @@
+<h2 style="text-align: center;">To-Do List Page</h2>
+<header style="text-align: center;">
+    <button [routerLink]="['/create']"> + Add New</button>
+</header>
+<br>
+
+<div style="display: flex; justify-content: center;">
+    <table style="width: 80%; text-align: center;">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Create Date</th>
+                <th>Deadline</th>
+                <th>Person</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="todos.length > 0; else noTodos">
+                <tr *ngFor="let todo of todos; let i = index"
+                    [ngStyle]="{'background-color': todo.status === todoStatus.pending ? 'lightgray' : 'green'}">
+                    <td>{{i + 1}}</td>
+                    <td>{{todo.title}}</td>
+                    <td>{{todo.createDate | customDate}}</td>
+                    <td>{{todo.deadline | customDate}}</td>
+                    <td>{{todo.responsiblePersonName}}</td>
+                    <td>{{todoStatus[todo.status]}}</td>
+                    <td>
+                        <button style="background-color:rgb(7, 252, 68);" (click)="statusChange(todo)">Change Status</button>
+                        <button style="background-color:rgb(224, 248, 5);" [routerLink]="['/edit/', todo.id]">Update</button>
+                        <button style="background-color: red;" (click)="onDelete(todo.id)">Delete</button>
+                    </td>
+                </tr>
+            </ng-container>
+            <ng-template #noTodos>
+                <tr>
+                    <td colspan="7" style="text-align: center;">No to-do items yet</td>
+                </tr>
+            </ng-template>
+        </tbody>
+    </table>
+</div>
+

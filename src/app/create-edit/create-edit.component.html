@@ -1,0 +1,28 @@
+
+ <div style="display: flex; justify-content: center; padding-top: 50px;">
+    <div style="width: 50%; text-align: center;">
+        <h2>{{ id ? 'Update To-Do' : 'Create New To-Do' }}</h2>
+
+        <form [formGroup]="form" [style]="invalidForm ? {'border': '1px solid red'} : {'border': '1px solid black'}" style="padding: 20px;">
+            <label> Title:
+                <input type="text" formControlName="title" style="width: 100%; margin-bottom: 10px;">
+            </label>
+            <br>
+            <label> Deadline:
+                <input type="date" formControlName="deadline" style="width: 100%; margin-bottom: 10px;">
+            </label>
+            <br>
+            <label> Responsible Person:
+                <input type="text" formControlName="responsiblePersonName" style="width: 100%; margin-bottom: 10px;" placeholder="Enter person's name">
+            </label>
+            <br>
+            <div class="actions" style="margin-top: 20px;">
+                <button (click)="onsubmit()" style="background-color: rgb(7, 252, 68); margin-right: 10px;">Save</button>
+                <button (click)="close()" style="background-color: red;">Close</button>
+            </div>
+            <div *ngIf="invalidForm" class="error" style="color: red; margin-top: 10px;">
+                All fields are required
+            </div>
+        </form>
+    </div>
+</div>
